@@ -1,0 +1,3 @@
+{
+  "9913004/f Thistle 1000/w sunny/t 600 1800": "50s/52 35/farmer 52 38 0 thistle 52 33 2/pause 1000/speak Thistle \"Hey, farmer. Come here.\"/move farmer 0 -3 0/pause 500/faceDirection farmer 0/speak Thistle \"I've been watching how you tend your land. You're... surprisingly competent.\"/speak Thistle \"Most humans just trample everything, but you actually listen to the soil.\"/pause 500/speak Thistle \"I want you to have this. It's a Heart Willow sapling.\"/addItem (O)cosmicopal.HeartWillowSapling/pause 500/speak Thistle \"It connects directly to the forest's ley lines. Don't let it die, or I'll know.\"/pause 400/speak Thistle \"...And thanks. For not being annoying.\"/end"
+}

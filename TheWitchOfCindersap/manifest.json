@@ -1,0 +1,11 @@
+{
+  "Name": "The Witch of Cindersap Forest",
+  "Author": "CosmicOpal",
+  "Version": "1.0.0",
+  "Description": "Adds Thistle, a grumpy forest witch, and the magical Heart Willow tree.",
+  "UniqueID": "cosmicopal.TheWitchOfCindersapForest",
+  "UpdateKeys": [],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher"
+  }
+}

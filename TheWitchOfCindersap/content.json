@@ -1,0 +1,238 @@
+{
+  "Format": "2.6.0",
+  "Changes": [
+    // --- 1. Seasonal NPC Visuals (Auto-Switching) ---
+    {
+      "LogName": "Load Seasonal Sprites",
+      "Action": "Load",
+      "Target": "Characters/thistle",
+      "FromFile": "assets/sprites_{{season}}.png"
+    },
+    {
+      "LogName": "Load Seasonal Portraits",
+      "Action": "Load",
+      "Target": "Portraits/thistle",
+      "FromFile": "assets/portraits_{{season}}.png"
+    },
+
+    // --- 2. Data & Dialogue ---
+    {
+      "LogName": "Load Dialogue",
+      "Action": "Load",
+      "Target": "Characters/Dialogue/thistle",
+      "FromFile": "assets/Dialogue.json"
+    },
+    {
+      "LogName": "Load Schedule",
+      "Action": "Load",
+      "Target": "Characters/schedules/thistle",
+      "FromFile": "assets/schedule.json"
+    },
+    {
+      "LogName": "Festivals",
+      "Action": "Load",
+      "Target": "Characters/Festivals/thistle",
+      "FromFile": "assets/Festivals.json"
+    },
+    {
+      "LogName": "Character Data",
+      "Action": "EditData",
+      "Target": "Data/Characters",
+      "Entries": {
+        "thistle": {
+          "DisplayName": "Thistle",
+          "BirthSeason": "Fall",
+          "BirthDay": 13,
+          "HomeRegion": "Forest",
+          "Gender": "Female",
+          "Age": "Adult",
+          "Manner": "Rude",
+          "SocialAnxiety": "Outgoing",
+          "Optimism": "Positive",
+          "CanBeRomanced": true,
+          "SpawnIfMissing": true,
+          "Home": [
+            {
+              "Id": "Default",
+              "Location": "Forest",
+              "Tile": { "X": 52, "Y": 33 },
+              "Direction": "down"
+            }
+          ],
+          "Size": { "X": 16, "Y": 32 }
+        }
+      }
+    },
+    {
+      "LogName": "Gift Tastes",
+      "Action": "EditData",
+      "Target": "Data/NPCGiftTastes",
+      "Entries": {
+        "thistle": "Oh! This... this acts as a potent catalyst. How did you know?//769 768 422 259 459 797/Useful. I can brew something with this. Thank you.$h//16 18 20 22 396 614/I have no use for this. It's just clutter.$s//72/Why would you give me this? It disrupts the local aura. Take it away.$a//373 167 142//Oh, decent enough.//286 287 288"
+      }
+    },
+
+    // --- 3. World & Map (Fixed Tent Season) ---
+    {
+      "LogName": "Patch Forest Map",
+      "Action": "EditMap",
+      "Target": "Maps/Forest",
+      "FromFile": "assets/thistle_tent.tmx",
+      "ToArea": { "X": 51, "Y": 29, "Width": 4, "Height": 4 },
+      "PatchMode": "Overlay"
+    },
+    {
+      "LogName": "Update Tent Season",
+      "Action": "EditMap",
+      "Target": "Maps/Forest",
+      "Tilesheets": [
+        {
+          "Id": "thistle_tent_sheet",
+          "Image": "Mods/cosmicopal.TheWitchOfCindersapForest/assets/Tent_{{season}}.png"
+        }
+      ],
+      "MapProperties": { "ThistleTentSeason": "{{season}}" }
+    },
+
+    // --- 4. Custom Items & Seasonal Fruit Tree Logic ---
+    // FIXED: Target path corrected to match internal lookup
+    {
+      "LogName": "Load Seasonal Fruit Tree Texture",
+      "Action": "Load",
+      "Target": "Mods/cosmicopal.TheWitchOfCindersapForest/HeartWillow",
+      "FromFile": "assets/fruit_tree_texture_{{season}}.png"
+    },
+    {
+      "LogName": "Load Nut Texture",
+      "Action": "Load",
+      "Target": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowNut",
+      "FromFile": "assets/HeartWillowNut.png"
+    },
+    {
+      "LogName": "Load Sapling Texture",
+      "Action": "Load",
+      "Target": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowSapling",
+      "FromFile": "assets/HeartWillowSaplingItem.png"
+    },
+    {
+      "LogName": "Load Fruit Texture",
+      "Action": "Load",
+      "Target": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowFruit",
+      "FromFile": "assets/HeartWillowFruit.png"
+    },
+    {
+      "LogName": "Load Fertilizer Texture",
+      "Action": "Load",
+      "Target": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/WitchsDust",
+      "FromFile": "assets/FruitTreeFertilizer.png"
+    },
+    {
+      "LogName": "Add Objects",
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "cosmicopal.HeartWillowSeed": {
+          "Name": "Heart Willow Nut",
+          "DisplayName": "Heart Willow Nut",
+          "Description": "A rare nut pulsed with forest magic. It needs to be prepared before planting.",
+          "Type": "Basic",
+          "Category": -74,
+          "Price": 500,
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowNut",
+          "SpriteIndex": 0
+        },
+        "cosmicopal.HeartWillowSapling": {
+          "Name": "Heart Willow Sapling",
+          "DisplayName": "Heart Willow Sapling",
+          "Description": "A young Heart Willow ready to be planted. Takes 28 days to produce fruit.",
+          "Type": "Basic", 
+          "Category": -74,
+          "Price": 1000,
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowSapling",
+          "SpriteIndex": 0
+        },
+        "cosmicopal.HeartWillowFruit": {
+          "Name": "Heart Willow Fruit",
+          "DisplayName": "Heart Willow Fruit",
+          "Description": "A glowing fruit that pulses with magic.",
+          "Type": "Basic",
+          "Category": -79,
+          "Price": 200,
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/HeartWillowFruit",
+          "SpriteIndex": 0,
+          "Edibility": 20
+        },
+        "cosmicopal.WitchsDust": {
+          "Name": "Witch's Dust",
+          "DisplayName": "Witch's Dust",
+          "Description": "A glittering powder that accelerates tree growth. Works on Heart Willows.",
+          "Type": "Basic",
+          "Category": -19,
+          "Price": 500,
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/Objects/WitchsDust",
+          "SpriteIndex": 0,
+          "ContextTags": [ "tree_fertilizer_item" ]
+        }
+      }
+    },
+    {
+      "LogName": "Add Fruit Tree Data",
+      "Action": "EditData",
+      "Target": "Data/fruitTrees",
+      "Entries": {
+        "cosmicopal.HeartWillowSapling": {
+          "DisplayName": "Heart Willow",
+          "Seasons": [ "Spring", "Summer", "Fall", "Winter" ],
+          "Fruit": [
+            { "ItemId": "cosmicopal.HeartWillowFruit", "Count": 1 },
+            { "ItemId": "cosmicopal.HeartWillowSeed", "Count": 1, "Chance": 0.1 } 
+          ],
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/HeartWillow",
+          "TextureSpriteRow": 0,
+          // Only transforms to a stump when struck by lightning
+          "LightningEffect": "ReplaceWith cosmicopal.BurntHeartWillow"
+        }
+      }
+    },
+    {
+      "LogName": "Burnt Stump Logic",
+      "Action": "EditData",
+      "Target": "Data/BigCraftables",
+      "Entries": {
+        "cosmicopal.BurntHeartWillow": {
+          "Name": "Burnt Heart Willow",
+          "DisplayName": "Burnt Heart Willow",
+          "Description": "The magic-charred remains of a Heart Willow. It's dead.",
+          "Price": 0,
+          "Texture": "Mods/cosmicopal.TheWitchOfCindersapForest/HeartWillow",
+          "SpriteIndex": 7, 
+          "CanBePlacedOutdoors": true,
+          "CanBePlacedIndoors": false,
+          "Fragility": 2, 
+          "CustomFields": {
+            "DropOnChop": "(O)709 2"
+          }
+        }
+      }
+    },
+    {
+      "LogName": "Crafting Recipes",
+      "Action": "EditData",
+      "Target": "Data/CraftingRecipes",
+      "Entries": {
+        "Heart Willow Sapling": "cosmicopal.HeartWillowSeed 1 92 10 388 5/Field/cosmicopal.HeartWillowSapling/false/null",
+        "Witch's Dust": "768 1 92 20/Field/cosmicopal.WitchsDust 5/false/null"
+      }
+    },
+    
+    // --- 5. 4-Heart Event ---
+    {
+      "LogName": "Add 4-Heart Event",
+      "Action": "EditData",
+      "Target": "Data/Events/Forest",
+      "Entries": {
+        "9911001/f thistle 1000/n thistle/t 1000 1700": "Faded_Spring_Theme/52 33/farmer 52 40 0 thistle 52 33 2/skippable/move farmer 0 -5 0/speak thistle \"Oh. It's you.$h\"/pause 500/speak thistle \"You've been... surprisingly tolerable. For a human.\"/speak thistle \"I dug this up earlier. It was trying to strangle my mandrakes.\"/move thistle 0 1 2/textAboveHead thistle \"Here.\"/playSound dwop/addItem cosmicopal.HeartWillowSapling/addCraftingRecipe \"Heart Willow Sapling\"/addCraftingRecipe \"Witch's Dust\"/pause 1000/speak thistle \"It's a Heart Willow. It feeds on ambient magic. Or compost. Whichever.$h\"/speak thistle \"I've taught you how to make more saplings, and a special dust to make them grow faster.\"/speak thistle \"Don't waste it.\"/end"
+      }
+    }
+  ]
+}
